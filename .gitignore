@@ -1,0 +1,32 @@
+.venv/
+.env
+.env.*
+!.env.example
+!.env.lightdash.example
+!.env.metabase.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.dbt/
+target/
+logs/
+*.duckdb
+*.duckdb.wal
+data/generated/
+.DS_Store
+/local/
+.cache/
+.lightdash-metadata.json
+*.egg-info/
+build/
+dist/
+
+# Local dbt profile overrides may contain credentials or machine-specific paths.
+/dbt/profiles/.user.yml
+
+# Binary Power BI Desktop files are published only as explicitly approved release assets.
+*.pbix
+*.pbit

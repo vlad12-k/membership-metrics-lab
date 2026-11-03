@@ -1,0 +1,32 @@
+services:
+  warehouse:
+    image: postgres:18.6
+    environment:
+      POSTGRES_DB: membership_metrics
+      POSTGRES_USER: membership_metrics
+      POSTGRES_PASSWORD: ${MML_DB_PASSWORD:?Set MML_DB_PASSWORD in the ignored local .env file}
+      TZ: UTC
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - postgres-data-v18:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U membership_metrics -d membership_metrics"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - mml-local
+      - metabase-local
+
+volumes:
+  postgres-data-v18:
+
+networks:
+  mml-local:
+    name: membership-metrics-lab-local
+  metabase-local:
+    name: membership-metrics-lab-metabase-local
+    internal: true

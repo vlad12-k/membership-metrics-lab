@@ -1,0 +1,426 @@
+{
+  "completed_at_utc": "2026-10-28T21:56:47+00:00",
+  "data_classification": "synthetic; no real member or partner records",
+  "database": {
+    "database": "membership_metrics",
+    "host": "127.0.0.1",
+    "port": 54329,
+    "role": "lightdash_reader",
+    "session_datestyle": "ISO, YMD",
+    "session_timezone": "UTC",
+    "transaction": "repeatable read, read only"
+  },
+  "dbt_context": {
+    "dbt_core": "1.12.6",
+    "dbt_postgres": "1.11.0",
+    "models": "locally validated G3 mart outputs; no model change performed"
+  },
+  "extracted_at_utc": "2026-10-28T21:56:46+00:00",
+  "project": "Membership Metrics Lab",
+  "reconciliation": {
+    "by_kpi_or_crosscheck": {
+      "KPI-01": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-02": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-03": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-04": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-05": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-06": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-07": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-08": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-09": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      },
+      "KPI-10": {
+        "failures": 0,
+        "matches": 171,
+        "rows": 171
+      },
+      "XREF-05": {
+        "failures": 0,
+        "matches": 18,
+        "rows": 18
+      }
+    },
+    "csv_bytes": 66827,
+    "csv_file": "kpi-reconciliation.csv",
+    "csv_sha256": "c2e884d64a3ba22814a15e0bb14e3bedb964fb4894c780e6e86aa539cd1f07ce",
+    "failed_rows": 0,
+    "matched_rows": 351,
+    "row_count": 351,
+    "sql_file": "docs/evidence/powerbi-kpi-reconciliation.sql"
+  },
+  "snapshots": {
+    "mart_cohort_retention": {
+      "columns": [
+        {
+          "data_type": "date",
+          "name": "cohort_month",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "integer",
+          "name": "age_month",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "cohort_size",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "retained_members",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_complete_month",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "numeric",
+          "name": "cohort_retention_rate",
+          "nullable": true,
+          "udt_name": "numeric"
+        }
+      ],
+      "csv_bytes": 7837,
+      "csv_file": "mart_cohort_retention.csv",
+      "csv_sha256": "6c58224dbbbd2b53e24118997c71bc267859c985fc778bba19c1801f5138905e",
+      "csv_types_note": "CSV has no embedded types; PostgreSQL schema is recorded above and must be applied explicitly in Power BI.",
+      "grain": "one row per cohort_month and age_month",
+      "ordering": "cohort_month, age_month",
+      "period_column": "cohort_month",
+      "period_max": "2025-12-01",
+      "period_min": "2024-07-01",
+      "row_count": 171,
+      "schema_sha256": "152ffe6d6b86282393aa51b4cf9a85b0ad57e6ab47261f6dff92c9f5e7e74b82",
+      "source_relation": "marts.mart_cohort_retention",
+      "time_semantics": "cohort_month is the UTC registration calendar month; age_month is relative calendar-month age; incomplete months have NULL retention rates."
+    },
+    "mart_executive_kpis": {
+      "columns": [
+        {
+          "data_type": "date",
+          "name": "month_start",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "date",
+          "name": "month_end_date",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_complete_month",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "integer",
+          "name": "total_registered_members",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "eligible_members",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "active_members_30d",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "monthly_active_members",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "offer_redemption_count",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "eligible_member_offer_pairs",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "redeemed_member_offer_pairs",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "numeric",
+          "name": "offer_redemption_rate",
+          "nullable": true,
+          "udt_name": "numeric"
+        },
+        {
+          "data_type": "integer",
+          "name": "active_partners_as_of_month_end",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "partner_offer_available_count",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "engaged_eligible_partner_count",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "numeric",
+          "name": "partner_engagement_rate",
+          "nullable": true,
+          "udt_name": "numeric"
+        },
+        {
+          "data_type": "integer",
+          "name": "members_with_redemption",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "repeat_redeemers",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "numeric",
+          "name": "repeat_redemption_rate",
+          "nullable": true,
+          "udt_name": "numeric"
+        }
+      ],
+      "csv_bytes": 2918,
+      "csv_file": "mart_executive_kpis.csv",
+      "csv_sha256": "b9ebf74026aed538f66fd424eb5c5df311fe145716108c892040be462306a236",
+      "csv_types_note": "CSV has no embedded types; PostgreSQL schema is recorded above and must be applied explicitly in Power BI.",
+      "grain": "one row per reporting month",
+      "ordering": "month_start",
+      "period_column": "month_start",
+      "period_max": "2025-12-01",
+      "period_min": "2024-07-01",
+      "row_count": 18,
+      "schema_sha256": "6d88b4ca2e1445a5d5fe01ba051a6644a4006d6923cb425c015efbce505f5ef1",
+      "source_relation": "marts.mart_executive_kpis",
+      "time_semantics": "month_start is UTC calendar-month start; month_end_date is the inclusive UTC calendar date; snapshot values are non-additive over months."
+    },
+    "mart_member_engagement": {
+      "columns": [
+        {
+          "data_type": "character varying",
+          "name": "member_id",
+          "nullable": true,
+          "udt_name": "varchar"
+        },
+        {
+          "data_type": "date",
+          "name": "registration_date",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "date",
+          "name": "cohort_month",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "date",
+          "name": "month_start",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "date",
+          "name": "month_end_date",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_complete_month",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_eligible_as_of_month_end",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_monthly_active",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_active_30d_as_of_month_end",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "integer",
+          "name": "qualifying_event_count",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "integer",
+          "name": "qualifying_event_count_30d",
+          "nullable": true,
+          "udt_name": "int4"
+        }
+      ],
+      "csv_bytes": 6279980,
+      "csv_file": "mart_member_engagement.csv",
+      "csv_sha256": "25f390bedc65dfe70b1abc053ada19cf04bf4e1db5ee1b3b2054623550e325aa",
+      "csv_types_note": "CSV has no embedded types; PostgreSQL schema is recorded above and must be applied explicitly in Power BI.",
+      "grain": "one row per member_id and month_start",
+      "ordering": "member_id COLLATE \"C\", month_start",
+      "period_column": "month_start",
+      "period_max": "2025-12-01",
+      "period_min": "2024-07-01",
+      "row_count": 95148,
+      "schema_sha256": "086ce223194408a23a541fcb448847b42c2e668e9cffc5d5a0bf53c1e532327c",
+      "source_relation": "marts.mart_member_engagement",
+      "time_semantics": "registration_date and cohort_month are UTC business dates; month_start/month_end_date define the reporting calendar month; activity windows are UTC calendar dates."
+    },
+    "mart_partner_performance": {
+      "columns": [
+        {
+          "data_type": "character varying",
+          "name": "partner_id",
+          "nullable": true,
+          "udt_name": "varchar"
+        },
+        {
+          "data_type": "character varying",
+          "name": "category_id",
+          "nullable": true,
+          "udt_name": "varchar"
+        },
+        {
+          "data_type": "character varying",
+          "name": "category_name",
+          "nullable": true,
+          "udt_name": "varchar"
+        },
+        {
+          "data_type": "date",
+          "name": "month_start",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "date",
+          "name": "month_end_date",
+          "nullable": true,
+          "udt_name": "date"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_active_as_of_month_end",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "integer",
+          "name": "eligible_member_offer_pairs",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "boolean",
+          "name": "has_available_offer",
+          "nullable": true,
+          "udt_name": "bool"
+        },
+        {
+          "data_type": "integer",
+          "name": "valid_redemption_count",
+          "nullable": true,
+          "udt_name": "int4"
+        },
+        {
+          "data_type": "boolean",
+          "name": "is_engaged_eligible_partner",
+          "nullable": true,
+          "udt_name": "bool"
+        }
+      ],
+      "csv_bytes": 137985,
+      "csv_file": "mart_partner_performance.csv",
+      "csv_sha256": "4f2ed4e858ec9e6306ca141a08190b4038864a07adff9c5f50b9c558407bd98a",
+      "csv_types_note": "CSV has no embedded types; PostgreSQL schema is recorded above and must be applied explicitly in Power BI.",
+      "grain": "one row per partner_id and month_start",
+      "ordering": "partner_id COLLATE \"C\", month_start",
+      "period_column": "month_start",
+      "period_max": "2025-12-01",
+      "period_min": "2024-07-01",
+      "row_count": 2279,
+      "schema_sha256": "56c8be9564883a50fd55f1384141ac2fc206f7f950356b5682b3145959e52dd1",
+      "source_relation": "marts.mart_partner_performance",
+      "time_semantics": "month_start is UTC calendar-month start and month_end_date is the inclusive UTC calendar date; partner availability and activity are evaluated within that month."
+    }
+  }
+}

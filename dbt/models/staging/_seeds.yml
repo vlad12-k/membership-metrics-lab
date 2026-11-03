@@ -1,0 +1,81 @@
+version: 2
+
+seeds:
+  - name: members
+    description: Synthetic registration source; one row per pseudonymous member.
+    columns:
+      - name: member_id
+        description: Stable synthetic member key.
+        data_tests: [not_null, unique]
+      - name: registration_date
+        description: UTC business date on which the fictional membership was registered.
+        data_tests: [not_null]
+  - name: membership_status_history
+    description: Synthetic half-open membership-status intervals; one row per member and effective start.
+    columns:
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('members'), field: member_id}}]
+      - name: effective_start_date
+        data_tests: [not_null]
+      - name: status
+        data_tests:
+          - accepted_values: {arguments: {values: ['active', 'inactive']}}
+  - name: partner_categories
+    description: Fixed synthetic partner-category lookup.
+    columns:
+      - name: category_id
+        data_tests: [not_null, unique]
+      - name: category_name
+        data_tests: [not_null, unique]
+  - name: partners
+    description: Synthetic partner master; one static category and activation interval per partner.
+    columns:
+      - name: partner_id
+        data_tests: [not_null, unique]
+      - name: category_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('partner_categories'), field: category_id}}]
+  - name: offers
+    description: Synthetic offer master; each offer belongs to one partner and a half-open validity interval.
+    columns:
+      - name: offer_id
+        data_tests: [not_null, unique]
+      - name: partner_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('partners'), field: partner_id}}]
+  - name: offer_eligibility
+    description: Synthetic member-offer opportunity intervals, at one member-offer pair per row.
+    columns:
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('members'), field: member_id}}]
+      - name: offer_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('offers'), field: offer_id}}]
+  - name: redemptions
+    description: Synthetic source redemption events; a repeated redemption has its own ID.
+    columns:
+      - name: redemption_id
+        data_tests: [not_null, unique]
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('members'), field: member_id}}]
+      - name: offer_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('offers'), field: offer_id}}]
+      - name: status
+        data_tests: [not_null, accepted_values: {arguments: {values: ['complete', 'cancelled', 'reversed']}}]
+  - name: member_events
+    description: Synthetic event stream; one event ID is one potential qualifying activity.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('members'), field: member_id}}]
+      - name: event_type
+        data_tests: [not_null, accepted_values: {arguments: {values: ['offer_view', 'offer_save', 'partner_view']}}]
+      - name: event_at
+        data_tests: [not_null]
+  - name: simulation_period
+    description: One-row control seed defining the inclusive synthetic horizon and provenance version.
+    columns:
+      - name: period_id
+        data_tests: [not_null, unique]
+      - name: simulation_start_date
+        data_tests: [not_null]
+      - name: simulation_end_date_inclusive
+        data_tests: [not_null]

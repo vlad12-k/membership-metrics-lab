@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_DB: membership_metrics
+          POSTGRES_USER: membership_metrics
+          POSTGRES_PASSWORD: mml_ci_only
+          TZ: UTC
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U membership_metrics -d membership_metrics"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      MML_DB_HOST: 127.0.0.1
+      MML_DB_PORT: "5432"
+      MML_DB_USER: membership_metrics
+      MML_DB_PASSWORD: mml_ci_only
+      MML_DB_NAME: membership_metrics
+    steps:
+      - name: Checkout
+        # actions/checkout v4.4.0, pinned to its immutable release commit.
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Install uv
+        # astral-sh/setup-uv v10.3.3, pinned to its immutable release commit.
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
+        with:
+          version: 0.11.26
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install Python
+        run: uv python install 3.12
+
+      - name: Check lock consistency
+        run: uv lock --check --python 3.12
+
+      - name: Install locked project dependencies
+        run: uv sync --locked --all-groups
+
+      - name: Run Python tests
+        run: uv run --locked pytest
+
+      - name: Lint Python
+        run: uv run --locked ruff check src tests
+
+      - name: Check Python formatting
+        run: uv run --locked ruff format --check src tests
+
+      - name: Generate deterministic synthetic seeds
+        run: uv run --locked membership-metrics-generate
+
+      - name: Validate generated inputs
+        run: uv run --locked membership-metrics-validate
+
+      - name: Validate dbt connection
+        run: uv run --locked dbt --no-send-anonymous-usage-stats debug --project-dir dbt --profiles-dir dbt/profiles
+
+      - name: Build and test dbt project
+        run: uv run --locked dbt --no-send-anonymous-usage-stats build --project-dir dbt --profiles-dir dbt/profiles

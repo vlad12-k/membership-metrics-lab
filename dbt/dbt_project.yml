@@ -1,0 +1,84 @@
+name: membership_metrics_lab
+version: "1.0.0"
+config-version: 2
+profile: membership_metrics_lab
+
+model-paths: [models]
+test-paths: [tests]
+seed-paths: [../data/generated/dbt-seeds]
+macro-paths: [macros]
+analysis-paths: [analyses]
+target-path: target
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  membership_metrics_lab:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  membership_metrics_lab:
+    +schema: raw
+    +quote_columns: false
+    members:
+      +column_types:
+        member_id: varchar
+        registration_date: date
+    membership_status_history:
+      +column_types:
+        member_id: varchar
+        status: varchar
+        effective_start_date: date
+        effective_end_date: date
+    partner_categories:
+      +column_types:
+        category_id: varchar
+        category_name: varchar
+    partners:
+      +column_types:
+        partner_id: varchar
+        category_id: varchar
+        active_from: date
+        active_to: date
+    offers:
+      +column_types:
+        offer_id: varchar
+        partner_id: varchar
+        offer_title: varchar
+        valid_from: date
+        valid_to: date
+    offer_eligibility:
+      +column_types:
+        member_id: varchar
+        offer_id: varchar
+        eligible_from: date
+        eligible_to: date
+    redemptions:
+      +column_types:
+        redemption_id: varchar
+        member_id: varchar
+        offer_id: varchar
+        redeemed_at: timestamptz
+        status: varchar
+    member_events:
+      +column_types:
+        event_id: varchar
+        member_id: varchar
+        event_type: varchar
+        event_at: timestamptz
+    simulation_period:
+      +column_types:
+        period_id: varchar
+        simulation_start_date: date
+        simulation_end_date_inclusive: date
+        seed: integer
+        schema_version: varchar

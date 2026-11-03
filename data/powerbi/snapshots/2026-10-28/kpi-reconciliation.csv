@@ -1,0 +1,352 @@
+period_start,period_end,actual_is_complete_month,reference_is_complete_month,kpi_id,kpi_name,actual_value,reference_value,actual_numerator,reference_numerator,actual_denominator,reference_denominator,reference_basis,matches
+2024-07-01,2024-07-31,t,t,KPI-01,Total registered members,540,540,540,540,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-07-01,2024-07-31,t,t,KPI-02,Eligible members,540,540,540,540,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-07-01,2024-07-31,t,t,KPI-03,Active members (30-day),64,64,64,64,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-07-01,2024-07-31,t,t,KPI-04,Monthly active members,64,64,64,64,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-07-01,2024-07-31,t,t,KPI-05,Offer redemption count,4,4,4,4,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-07-01,2024-07-31,t,t,KPI-06,Offer redemption rate,0.01834862385321100917,0.01834862385321100917,4,4,218,218,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-07-01,2024-07-31,t,t,KPI-07,Active partners,21,21,21,21,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-07-01,2024-07-31,t,t,KPI-08,Partner engagement rate,0.50000000000000000000,0.50000000000000000000,2,2,4,4,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-07-01,2024-07-31,t,t,KPI-09,Repeat redemption rate,0.00000000000000000000,0.00000000000000000000,0,0,4,4,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-07-01,2024-07-31,t,t,KPI-10,Cohort retention rate,0.11851851851851851852,0.11851851851851851852,64,64,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-07-01,2024-07-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,4,4,4,4,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2024-08-01,2024-08-31,t,t,KPI-01,Total registered members,1101,1101,1101,1101,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-08-01,2024-08-31,t,t,KPI-02,Eligible members,1098,1098,1098,1098,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-08-01,2024-08-31,t,t,KPI-03,Active members (30-day),125,125,125,125,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-08-01,2024-08-31,t,t,KPI-04,Monthly active members,127,127,127,127,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-08-01,2024-08-31,t,t,KPI-05,Offer redemption count,48,48,48,48,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-08-01,2024-08-31,t,t,KPI-06,Offer redemption rate,0.06284916201117318436,0.06284916201117318436,45,45,716,716,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-08-01,2024-08-31,t,t,KPI-07,Active partners,33,33,33,33,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-08-01,2024-08-31,t,t,KPI-08,Partner engagement rate,1.00000000000000000000,1.00000000000000000000,11,11,11,11,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-08-01,2024-08-31,t,t,KPI-09,Repeat redemption rate,0.06666666666666666667,0.06666666666666666667,3,3,45,45,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-08-01,2024-08-31,t,t,KPI-10,Cohort retention rate,0.12121212121212121212,0.12121212121212121212,68,68,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-08-01,2024-08-31,t,t,KPI-10,Cohort retention rate,0.10925925925925925926,0.10925925925925925926,59,59,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-08-01,2024-08-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,48,48,48,48,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2024-09-01,2024-09-30,t,t,KPI-01,Total registered members,1658,1658,1658,1658,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-09-01,2024-09-30,t,t,KPI-02,Eligible members,1649,1649,1649,1649,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-09-01,2024-09-30,t,t,KPI-03,Active members (30-day),208,208,208,208,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-09-01,2024-09-30,t,t,KPI-04,Monthly active members,209,209,209,209,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-09-01,2024-09-30,t,t,KPI-05,Offer redemption count,48,48,48,48,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-09-01,2024-09-30,t,t,KPI-06,Offer redemption rate,0.05334846765039727582,0.05334846765039727582,47,47,881,881,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-09-01,2024-09-30,t,t,KPI-07,Active partners,42,42,42,42,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-09-01,2024-09-30,t,t,KPI-08,Partner engagement rate,0.86666666666666666667,0.86666666666666666667,13,13,15,15,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-09-01,2024-09-30,t,t,KPI-09,Repeat redemption rate,0.02127659574468085106,0.02127659574468085106,1,1,47,47,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-09-01,2024-09-30,t,t,KPI-10,Cohort retention rate,0.10740740740740740741,0.10740740740740740741,58,58,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-09-01,2024-09-30,t,t,KPI-10,Cohort retention rate,0.12477718360071301248,0.12477718360071301248,70,70,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-09-01,2024-09-30,t,t,KPI-10,Cohort retention rate,0.14542190305206463196,0.14542190305206463196,81,81,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-09-01,2024-09-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,48,48,48,48,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2024-10-01,2024-10-31,t,t,KPI-01,Total registered members,2245,2245,2245,2245,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-10-01,2024-10-31,t,t,KPI-02,Eligible members,2217,2217,2217,2217,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-10-01,2024-10-31,t,t,KPI-03,Active members (30-day),236,236,236,236,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-10-01,2024-10-31,t,t,KPI-04,Monthly active members,243,243,243,243,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-10-01,2024-10-31,t,t,KPI-05,Offer redemption count,81,81,81,81,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-10-01,2024-10-31,t,t,KPI-06,Offer redemption rate,0.05461538461538461538,0.05461538461538461538,71,71,1300,1300,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-10-01,2024-10-31,t,t,KPI-07,Active partners,55,55,55,55,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-10-01,2024-10-31,t,t,KPI-08,Partner engagement rate,0.76190476190476190476,0.76190476190476190476,16,16,21,21,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-10-01,2024-10-31,t,t,KPI-09,Repeat redemption rate,0.14084507042253521127,0.14084507042253521127,10,10,71,71,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-10-01,2024-10-31,t,t,KPI-10,Cohort retention rate,0.11111111111111111111,0.11111111111111111111,60,60,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-10-01,2024-10-31,t,t,KPI-10,Cohort retention rate,0.10902896081771720613,0.10902896081771720613,64,64,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-10-01,2024-10-31,t,t,KPI-10,Cohort retention rate,0.12567324955116696589,0.12567324955116696589,70,70,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-10-01,2024-10-31,t,t,KPI-10,Cohort retention rate,0.08734402852049910873,0.08734402852049910873,49,49,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-10-01,2024-10-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,81,81,81,81,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2024-11-01,2024-11-30,t,t,KPI-01,Total registered members,2828,2828,2828,2828,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-11-01,2024-11-30,t,t,KPI-02,Eligible members,2776,2776,2776,2776,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-11-01,2024-11-30,t,t,KPI-03,Active members (30-day),479,479,479,479,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-11-01,2024-11-30,t,t,KPI-04,Monthly active members,483,483,483,483,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-11-01,2024-11-30,t,t,KPI-05,Offer redemption count,71,71,71,71,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-11-01,2024-11-30,t,t,KPI-06,Offer redemption rate,0.04260813428018076178,0.04260813428018076178,66,66,1549,1549,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-11-01,2024-11-30,t,t,KPI-07,Active partners,67,67,67,67,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-11-01,2024-11-30,t,t,KPI-08,Partner engagement rate,1.00000000000000000000,1.00000000000000000000,25,25,25,25,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-11-01,2024-11-30,t,t,KPI-09,Repeat redemption rate,0.10937500000000000000,0.10937500000000000000,7,7,64,64,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-11-01,2024-11-30,t,t,KPI-10,Cohort retention rate,0.16638078902229845626,0.16638078902229845626,97,97,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-11-01,2024-11-30,t,t,KPI-10,Cohort retention rate,0.17717206132879045997,0.17717206132879045997,104,104,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-11-01,2024-11-30,t,t,KPI-10,Cohort retention rate,0.15798922800718132855,0.15798922800718132855,88,88,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-11-01,2024-11-30,t,t,KPI-10,Cohort retention rate,0.17647058823529411765,0.17647058823529411765,99,99,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-11-01,2024-11-30,t,t,KPI-10,Cohort retention rate,0.17592592592592592593,0.17592592592592592593,95,95,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-11-01,2024-11-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,71,71,71,71,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2024-12-01,2024-12-31,t,t,KPI-01,Total registered members,3416,3416,3416,3416,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2024-12-01,2024-12-31,t,t,KPI-02,Eligible members,3328,3328,3328,3328,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2024-12-01,2024-12-31,t,t,KPI-03,Active members (30-day),627,627,627,627,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2024-12-01,2024-12-31,t,t,KPI-04,Monthly active members,643,643,643,643,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2024-12-01,2024-12-31,t,t,KPI-05,Offer redemption count,99,99,99,99,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2024-12-01,2024-12-31,t,t,KPI-06,Offer redemption rate,0.04858515750133475707,0.04858515750133475707,91,91,1873,1873,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2024-12-01,2024-12-31,t,t,KPI-07,Active partners,80,80,80,80,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2024-12-01,2024-12-31,t,t,KPI-08,Partner engagement rate,0.80645161290322580645,0.80645161290322580645,25,25,31,31,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2024-12-01,2024-12-31,t,t,KPI-09,Repeat redemption rate,0.10227272727272727273,0.10227272727272727273,9,9,88,88,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.20578231292517006803,0.20578231292517006803,121,121,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.17962962962962962963,0.17962962962962962963,97,97,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.19607843137254901961,0.19607843137254901961,110,110,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.18491921005385996409,0.18491921005385996409,103,103,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.17206132879045996593,0.17206132879045996593,101,101,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,KPI-10,Cohort retention rate,0.19039451114922813036,0.19039451114922813036,111,111,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2024-12-01,2024-12-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,99,99,99,99,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-01-01,2025-01-31,t,t,KPI-01,Total registered members,3964,3964,3964,3964,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-01-01,2025-01-31,t,t,KPI-02,Eligible members,3840,3840,3840,3840,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-01-01,2025-01-31,t,t,KPI-03,Active members (30-day),448,448,448,448,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-01-01,2025-01-31,t,t,KPI-04,Monthly active members,462,462,462,462,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-01-01,2025-01-31,t,t,KPI-05,Offer redemption count,84,84,84,84,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-01-01,2025-01-31,t,t,KPI-06,Offer redemption rate,0.03821964199322689889,0.03821964199322689889,79,79,2067,2067,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-01-01,2025-01-31,t,t,KPI-07,Active partners,92,92,92,92,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-01-01,2025-01-31,t,t,KPI-08,Partner engagement rate,0.77142857142857142857,0.77142857142857142857,27,27,35,35,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-01-01,2025-01-31,t,t,KPI-09,Repeat redemption rate,0.07692307692307692308,0.07692307692307692308,6,6,78,78,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.10951526032315978456,0.10951526032315978456,61,61,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.10948905109489051095,0.10948905109489051095,60,60,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.14455782312925170068,0.14455782312925170068,85,85,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.12864493996569468268,0.12864493996569468268,75,75,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.10562180579216354344,0.10562180579216354344,62,62,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.11586452762923351159,0.11586452762923351159,65,65,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,KPI-10,Cohort retention rate,0.10000000000000000000,0.10000000000000000000,54,54,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-01-01,2025-01-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,84,84,84,84,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-02-01,2025-02-28,t,t,KPI-01,Total registered members,4460,4460,4460,4460,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-02-01,2025-02-28,t,t,KPI-02,Eligible members,4275,4275,4275,4275,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-02-01,2025-02-28,t,t,KPI-03,Active members (30-day),552,552,552,552,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-02-01,2025-02-28,t,t,KPI-04,Monthly active members,531,531,531,531,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-02-01,2025-02-28,t,t,KPI-05,Offer redemption count,88,88,88,88,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-02-01,2025-02-28,t,t,KPI-06,Offer redemption rate,0.03398259428097803564,0.03398259428097803564,82,82,2413,2413,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-02-01,2025-02-28,t,t,KPI-07,Active partners,107,107,107,107,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-02-01,2025-02-28,t,t,KPI-08,Partner engagement rate,0.69047619047619047619,0.69047619047619047619,29,29,42,42,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-02-01,2025-02-28,t,t,KPI-09,Repeat redemption rate,0.07317073170731707317,0.07317073170731707317,6,6,82,82,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.13709677419354838710,0.13709677419354838710,68,68,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.11861313868613138686,0.11861313868613138686,65,65,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.12414965986394557823,0.12414965986394557823,73,73,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.11320754716981132075,0.11320754716981132075,66,66,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.11413969335604770017,0.11413969335604770017,67,67,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.11131059245960502693,0.11131059245960502693,62,62,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.10873440285204991087,0.10873440285204991087,61,61,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,KPI-10,Cohort retention rate,0.12777777777777777778,0.12777777777777777778,69,69,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-02-01,2025-02-28,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,88,88,88,88,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-03-01,2025-03-31,t,t,KPI-01,Total registered members,5003,5003,5003,5003,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-03-01,2025-03-31,t,t,KPI-02,Eligible members,4757,4757,4757,4757,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-03-01,2025-03-31,t,t,KPI-03,Active members (30-day),565,565,565,565,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-03-01,2025-03-31,t,t,KPI-04,Monthly active members,580,580,580,580,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-03-01,2025-03-31,t,t,KPI-05,Offer redemption count,95,95,95,95,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-03-01,2025-03-31,t,t,KPI-06,Offer redemption rate,0.02939255388634879164,0.02939255388634879164,90,90,3062,3062,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-03-01,2025-03-31,t,t,KPI-07,Active partners,121,121,121,121,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-03-01,2025-03-31,t,t,KPI-08,Partner engagement rate,0.83018867924528301887,0.83018867924528301887,44,44,53,53,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-03-01,2025-03-31,t,t,KPI-09,Repeat redemption rate,0.07954545454545454545,0.07954545454545454545,7,7,88,88,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.10951526032315978456,0.10951526032315978456,61,61,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.09259259259259259259,0.09259259259259259259,50,50,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.11942959001782531194,0.11942959001782531194,67,67,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.12707182320441988950,0.12707182320441988950,69,69,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.11224489795918367347,0.11224489795918367347,66,66,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.11149228130360205832,0.11149228130360205832,65,65,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.11754684838160136286,0.11754684838160136286,69,69,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.12043795620437956204,0.12043795620437956204,66,66,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,KPI-10,Cohort retention rate,0.13508064516129032258,0.13508064516129032258,67,67,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-03-01,2025-03-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,95,95,95,95,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-04-01,2025-04-30,t,t,KPI-01,Total registered members,5541,5541,5541,5541,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-04-01,2025-04-30,t,t,KPI-02,Eligible members,5217,5217,5217,5217,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-04-01,2025-04-30,t,t,KPI-03,Active members (30-day),606,606,606,606,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-04-01,2025-04-30,t,t,KPI-04,Monthly active members,618,618,618,618,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-04-01,2025-04-30,t,t,KPI-05,Offer redemption count,146,146,146,146,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-04-01,2025-04-30,t,t,KPI-06,Offer redemption rate,0.03749330476700589181,0.03749330476700589181,140,140,3734,3734,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-04-01,2025-04-30,t,t,KPI-07,Active partners,132,132,132,132,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-04-01,2025-04-30,t,t,KPI-08,Partner engagement rate,0.78688524590163934426,0.78688524590163934426,48,48,61,61,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-04-01,2025-04-30,t,t,KPI-09,Repeat redemption rate,0.06569343065693430657,0.06569343065693430657,9,9,137,137,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.09259259259259259259,0.09259259259259259259,50,50,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.11243611584327086882,0.11243611584327086882,66,66,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.08976660682226211849,0.08976660682226211849,50,50,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.11764705882352941176,0.11764705882352941176,66,66,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.11290322580645161290,0.11290322580645161290,56,56,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.13722126929674099485,0.13722126929674099485,80,80,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.12707182320441988950,0.12707182320441988950,69,69,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.09479553903345724907,0.09479553903345724907,51,51,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.10034013605442176871,0.10034013605442176871,59,59,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,KPI-10,Cohort retention rate,0.12956204379562043796,0.12956204379562043796,71,71,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-04-01,2025-04-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,146,146,146,146,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-05-01,2025-05-31,t,t,KPI-01,Total registered members,6106,6106,6106,6106,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-05-01,2025-05-31,t,t,KPI-02,Eligible members,5686,5686,5686,5686,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-05-01,2025-05-31,t,t,KPI-03,Active members (30-day),714,714,714,714,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-05-01,2025-05-31,t,t,KPI-04,Monthly active members,737,737,737,737,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-05-01,2025-05-31,t,t,KPI-05,Offer redemption count,205,205,205,205,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-05-01,2025-05-31,t,t,KPI-06,Offer redemption rate,0.03845410628019323671,0.03845410628019323671,199,199,5175,5175,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-05-01,2025-05-31,t,t,KPI-07,Active partners,148,148,148,148,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-05-01,2025-05-31,t,t,KPI-08,Partner engagement rate,0.84415584415584415584,0.84415584415584415584,65,65,77,77,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-05-01,2025-05-31,t,t,KPI-09,Repeat redemption rate,0.03015075376884422111,0.03015075376884422111,6,6,199,199,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.13940520446096654275,0.13940520446096654275,75,75,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.12222222222222222222,0.12222222222222222222,66,66,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.11408199643493761141,0.11408199643493761141,64,64,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.10771992818671454219,0.10771992818671454219,60,60,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.11584327086882453152,0.11584327086882453152,68,68,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.11149228130360205832,0.11149228130360205832,65,65,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.13775510204081632653,0.13775510204081632653,81,81,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.12408759124087591241,0.12408759124087591241,68,68,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.09677419354838709677,0.09677419354838709677,48,48,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.10497237569060773481,0.10497237569060773481,57,57,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,KPI-10,Cohort retention rate,0.15044247787610619469,0.15044247787610619469,85,85,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-05-01,2025-05-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,205,205,205,205,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-06-01,2025-06-30,t,t,KPI-01,Total registered members,6617,6617,6617,6617,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-06-01,2025-06-30,t,t,KPI-02,Eligible members,6118,6118,6118,6118,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-06-01,2025-06-30,t,t,KPI-03,Active members (30-day),1099,1099,1099,1099,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-06-01,2025-06-30,t,t,KPI-04,Monthly active members,1114,1114,1114,1114,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-06-01,2025-06-30,t,t,KPI-05,Offer redemption count,264,264,264,264,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-06-01,2025-06-30,t,t,KPI-06,Offer redemption rate,0.04123207301173402868,0.04123207301173402868,253,253,6136,6136,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-06-01,2025-06-30,t,t,KPI-07,Active partners,159,159,159,159,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-06-01,2025-06-30,t,t,KPI-08,Partner engagement rate,0.83950617283950617284,0.83950617283950617284,68,68,81,81,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-06-01,2025-06-30,t,t,KPI-09,Repeat redemption rate,0.07346938775510204082,0.07346938775510204082,18,18,245,245,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.15929203539823008850,0.15929203539823008850,90,90,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.14795008912655971480,0.14795008912655971480,83,83,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.14901256732495511670,0.14901256732495511670,83,83,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.16022099447513812155,0.16022099447513812155,87,87,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.17612524461839530333,0.17612524461839530333,90,90,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.18010291595197255575,0.18010291595197255575,105,105,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.14444444444444444444,0.14444444444444444444,78,78,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.18346774193548387097,0.18346774193548387097,91,91,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.18057921635434412266,0.18057921635434412266,106,106,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.17883211678832116788,0.17883211678832116788,98,98,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.15241635687732342007,0.15241635687732342007,82,82,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,KPI-10,Cohort retention rate,0.20578231292517006803,0.20578231292517006803,121,121,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-06-01,2025-06-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,264,264,264,264,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-07-01,2025-07-31,t,t,KPI-01,Total registered members,7196,7196,7196,7196,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-07-01,2025-07-31,t,t,KPI-02,Eligible members,6577,6577,6577,6577,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-07-01,2025-07-31,t,t,KPI-03,Active members (30-day),770,770,770,770,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-07-01,2025-07-31,t,t,KPI-04,Monthly active members,799,799,799,799,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-07-01,2025-07-31,t,t,KPI-05,Offer redemption count,325,325,325,325,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-07-01,2025-07-31,t,t,KPI-06,Offer redemption rate,0.04055998953290592699,0.04055998953290592699,310,310,7643,7643,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-07-01,2025-07-31,t,t,KPI-07,Active partners,169,169,169,169,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-07-01,2025-07-31,t,t,KPI-08,Partner engagement rate,0.79411764705882352941,0.79411764705882352941,81,81,102,102,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-07-01,2025-07-31,t,t,KPI-09,Repeat redemption rate,0.06930693069306930693,0.06930693069306930693,21,21,303,303,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.10463121783876500858,0.10463121783876500858,61,61,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.11350293542074363992,0.11350293542074363992,58,58,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.09540034071550255537,0.09540034071550255537,56,56,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.13471502590673575130,0.13471502590673575130,78,78,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.10766423357664233577,0.10766423357664233577,59,59,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.09515260323159784560,0.09515260323159784560,53,53,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.12298387096774193548,0.12298387096774193548,61,61,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.08703703703703703704,0.08703703703703703704,47,47,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.12891344383057090239,0.12891344383057090239,70,70,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.12925170068027210884,0.12925170068027210884,76,76,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.10966542750929368030,0.10966542750929368030,59,59,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.10442477876106194690,0.10442477876106194690,59,59,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,KPI-10,Cohort retention rate,0.11051693404634581105,0.11051693404634581105,62,62,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-07-01,2025-07-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,325,325,325,325,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-08-01,2025-08-31,t,t,KPI-01,Total registered members,7773,7773,7773,7773,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-08-01,2025-08-31,t,t,KPI-02,Eligible members,7017,7017,7017,7017,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-08-01,2025-08-31,t,t,KPI-03,Active members (30-day),790,790,790,790,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-08-01,2025-08-31,t,t,KPI-04,Monthly active members,824,824,824,824,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-08-01,2025-08-31,t,t,KPI-05,Offer redemption count,391,391,391,391,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-08-01,2025-08-31,t,t,KPI-06,Offer redemption rate,0.04153898535921007831,0.04153898535921007831,366,366,8811,8811,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-08-01,2025-08-31,t,t,KPI-07,Active partners,181,181,181,181,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-08-01,2025-08-31,t,t,KPI-08,Partner engagement rate,0.85046728971962616822,0.85046728971962616822,91,91,107,107,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-08-01,2025-08-31,t,t,KPI-09,Repeat redemption rate,0.08913649025069637883,0.08913649025069637883,32,32,359,359,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.10497237569060773481,0.10497237569060773481,57,57,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.10398613518197573657,0.10398613518197573657,60,60,577,577,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.13816925734024179620,0.13816925734024179620,80,80,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.10951526032315978456,0.10951526032315978456,61,61,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.10567514677103718200,0.10567514677103718200,54,54,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.10619469026548672566,0.10619469026548672566,60,60,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.13754646840148698885,0.13754646840148698885,74,74,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.07666098807495741056,0.07666098807495741056,45,45,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.09183673469387755102,0.09183673469387755102,54,54,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.08377896613190730838,0.08377896613190730838,47,47,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.09948542024013722127,0.09948542024013722127,58,58,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.08669354838709677419,0.08669354838709677419,43,43,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.12407407407407407407,0.12407407407407407407,67,67,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,KPI-10,Cohort retention rate,0.11678832116788321168,0.11678832116788321168,64,64,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-08-01,2025-08-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,391,391,391,391,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-09-01,2025-09-30,t,t,KPI-01,Total registered members,8344,8344,8344,8344,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-09-01,2025-09-30,t,t,KPI-02,Eligible members,7430,7430,7430,7430,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-09-01,2025-09-30,t,t,KPI-03,Active members (30-day),918,918,918,918,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-09-01,2025-09-30,t,t,KPI-04,Monthly active members,942,942,942,942,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-09-01,2025-09-30,t,t,KPI-05,Offer redemption count,431,431,431,431,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-09-01,2025-09-30,t,t,KPI-06,Offer redemption rate,0.03995311126306535118,0.03995311126306535118,409,409,10237,10237,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-09-01,2025-09-30,t,t,KPI-07,Active partners,195,195,195,195,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-09-01,2025-09-30,t,t,KPI-08,Partner engagement rate,0.85826771653543307087,0.85826771653543307087,109,109,127,127,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-09-01,2025-09-30,t,t,KPI-09,Repeat redemption rate,0.08020050125313283208,0.08020050125313283208,32,32,399,399,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.09677419354838709677,0.09677419354838709677,48,48,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.11208406304728546410,0.11208406304728546410,64,64,571,571,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.12407407407407407407,0.12407407407407407407,67,67,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.11054421768707482993,0.11054421768707482993,65,65,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.11131386861313868613,0.11131386861313868613,61,61,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.13644214162348877375,0.13644214162348877375,79,79,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.09777015437392795883,0.09777015437392795883,57,57,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.09156193895870736086,0.09156193895870736086,51,51,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.11764705882352941176,0.11764705882352941176,66,66,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.13171577123050259965,0.13171577123050259965,76,76,577,577,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.10497237569060773481,0.10497237569060773481,57,57,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.14090019569471624266,0.14090019569471624266,72,72,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.11152416356877323420,0.11152416356877323420,60,60,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.10265486725663716814,0.10265486725663716814,58,58,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,KPI-10,Cohort retention rate,0.10391822827938671210,0.10391822827938671210,61,61,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-09-01,2025-09-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,431,431,431,431,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-10-01,2025-10-31,t,t,KPI-01,Total registered members,8909,8909,8909,8909,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-10-01,2025-10-31,t,t,KPI-02,Eligible members,7814,7814,7814,7814,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-10-01,2025-10-31,t,t,KPI-03,Active members (30-day),895,895,895,895,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-10-01,2025-10-31,t,t,KPI-04,Monthly active members,953,953,953,953,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-10-01,2025-10-31,t,t,KPI-05,Offer redemption count,545,545,545,545,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-10-01,2025-10-31,t,t,KPI-06,Offer redemption rate,0.04250726442507264425,0.04250726442507264425,512,512,12045,12045,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-10-01,2025-10-31,t,t,KPI-07,Active partners,211,211,211,211,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-10-01,2025-10-31,t,t,KPI-08,Partner engagement rate,0.88652482269503546099,0.88652482269503546099,125,125,141,141,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-10-01,2025-10-31,t,t,KPI-09,Repeat redemption rate,0.10655737704918032787,0.10655737704918032787,52,52,488,488,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.10225303292894280763,0.10225303292894280763,59,59,577,577,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.12743362831858407080,0.12743362831858407080,72,72,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.11320754716981132075,0.11320754716981132075,66,66,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.12121212121212121212,0.12121212121212121212,68,68,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.09199318568994889267,0.09199318568994889267,54,54,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.11208406304728546410,0.11208406304728546410,64,64,571,571,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.07823129251700680272,0.07823129251700680272,46,46,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.12043795620437956204,0.12043795620437956204,66,66,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.10000000000000000000,0.10000000000000000000,54,54,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.09475806451612903226,0.09475806451612903226,47,47,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.09944751381215469613,0.09944751381215469613,54,54,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.11710037174721189591,0.11710037174721189591,63,63,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.08617594254937163375,0.08617594254937163375,48,48,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.10442477876106194690,0.10442477876106194690,59,59,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.11154598825831702544,0.11154598825831702544,57,57,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,KPI-10,Cohort retention rate,0.13126079447322970639,0.13126079447322970639,76,76,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-10-01,2025-10-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,545,545,545,545,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-11-01,2025-11-30,t,t,KPI-01,Total registered members,9447,9447,9447,9447,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-11-01,2025-11-30,t,t,KPI-02,Eligible members,8111,8111,8111,8111,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-11-01,2025-11-30,t,t,KPI-03,Active members (30-day),1428,1428,1428,1428,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-11-01,2025-11-30,t,t,KPI-04,Monthly active members,1478,1478,1478,1478,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-11-01,2025-11-30,t,t,KPI-05,Offer redemption count,626,626,626,626,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-11-01,2025-11-30,t,t,KPI-06,Offer redemption rate,0.04344608097106061727,0.04344608097106061727,587,587,13511,13511,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-11-01,2025-11-30,t,t,KPI-07,Active partners,217,217,217,217,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-11-01,2025-11-30,t,t,KPI-08,Partner engagement rate,0.86451612903225806452,0.86451612903225806452,134,134,155,155,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-11-01,2025-11-30,t,t,KPI-09,Repeat redemption rate,0.09523809523809523810,0.09523809523809523810,54,54,567,567,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.12606473594548551959,0.12606473594548551959,74,74,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.15328467153284671533,0.15328467153284671533,84,84,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.13627992633517495396,0.13627992633517495396,74,74,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.12746858168761220826,0.12746858168761220826,71,71,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.15241635687732342007,0.15241635687732342007,82,82,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.16460176991150442478,0.16460176991150442478,93,93,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.15816326530612244898,0.15816326530612244898,93,93,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.17699115044247787611,0.17699115044247787611,100,100,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.18786692759295499022,0.18786692759295499022,96,96,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.16295025728987993139,0.16295025728987993139,95,95,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.16287215411558669002,0.16287215411558669002,93,93,571,571,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.17443868739205526770,0.17443868739205526770,101,101,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.18181818181818181818,0.18181818181818181818,102,102,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.14904679376083188908,0.14904679376083188908,86,86,577,577,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.17843866171003717472,0.17843866171003717472,96,96,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.12777777777777777778,0.12777777777777777778,69,69,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,KPI-10,Cohort retention rate,0.13911290322580645161,0.13911290322580645161,69,69,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-11-01,2025-11-30,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,626,626,626,626,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t
+2025-12-01,2025-12-31,t,t,KPI-01,Total registered members,10000,10000,10000,10000,,,COUNT(*) grouped from mart_member_engagement at member-month grain,t
+2025-12-01,2025-12-31,t,t,KPI-02,Eligible members,8271,8271,8271,8271,,,COUNT(*) FILTER (eligible at month end) from mart_member_engagement,t
+2025-12-01,2025-12-31,t,t,KPI-03,Active members (30-day),1456,1456,1456,1456,,,COUNT(*) FILTER (30-day active) from mart_member_engagement,t
+2025-12-01,2025-12-31,t,t,KPI-04,Monthly active members,1544,1544,1544,1544,,,COUNT(*) FILTER (monthly active) from mart_member_engagement,t
+2025-12-01,2025-12-31,t,t,KPI-05,Offer redemption count,1462,1462,1462,1462,,,COUNT(*) by UTC redemption_date from marts.fct_redemptions,t
+2025-12-01,2025-12-31,t,t,KPI-06,Offer redemption rate,0.06742258605786342604,0.06742258605786342604,1326,1326,19667,19667,Distinct member-offer pairs from fct_redemptions / summed eligible pairs from mart_partner_performance,t
+2025-12-01,2025-12-31,t,t,KPI-07,Active partners,224,224,224,224,,,COUNT(DISTINCT partner_id) FILTER (active at month end) from mart_partner_performance,t
+2025-12-01,2025-12-31,t,t,KPI-08,Partner engagement rate,0.93452380952380952381,0.93452380952380952381,157,157,168,168,Distinct partner counts from mart_partner_performance at partner-month grain,t
+2025-12-01,2025-12-31,t,t,KPI-09,Repeat redemption rate,0.16598860862489829129,0.16598860862489829129,204,204,1229,1229,Members grouped from marts.fct_redemptions by UTC month and member_id,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.19646017699115044248,0.19646017699115044248,111,111,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.13969335604770017036,0.13969335604770017036,82,82,587,587,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.15055762081784386617,0.15055762081784386617,81,81,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.20976491862567811935,0.20976491862567811935,116,116,553,553,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.13464991023339317774,0.13464991023339317774,75,75,557,557,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.14711033274956217163,0.14711033274956217163,84,84,571,571,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.15771230502599653380,0.15771230502599653380,91,91,577,577,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.16755793226381461676,0.16755793226381461676,94,94,561,561,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.14090019569471624266,0.14090019569471624266,72,72,511,511,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.14922813036020583190,0.14922813036020583190,87,87,583,583,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.14963503649635036496,0.14963503649635036496,82,82,548,548,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.12953367875647668394,0.12953367875647668394,75,75,579,579,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.16532258064516129032,0.16532258064516129032,82,82,496,496,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.13996316758747697974,0.13996316758747697974,76,76,543,543,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.15000000000000000000,0.15000000000000000000,81,81,540,540,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.14336283185840707965,0.14336283185840707965,81,81,565,565,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.15476190476190476190,0.15476190476190476190,91,91,588,588,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,KPI-10,Cohort retention rate,0.15427509293680297398,0.15427509293680297398,83,83,538,538,Recomputed from mart_member_engagement grouped by registration cohort and relative calendar month,t
+2025-12-01,2025-12-31,t,t,XREF-05,Redemption event count: partner-month vs redemption fact,1462,1462,1462,1462,,,SUM(valid_redemption_count) from mart_partner_performance vs COUNT(*) from fct_redemptions,t

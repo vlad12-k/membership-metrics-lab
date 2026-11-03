@@ -1,0 +1,490 @@
+version: 2
+
+models:
+  - name: stg_members
+    description: Typed synthetic registration source at one row per stable member key.
+    columns:
+      - name: member_id
+        description: Pseudonymous stable member key; never a real-world identity.
+        data_tests: [not_null, unique]
+      - name: registration_date
+        description: UTC business date the fictional member joined.
+        data_tests: [not_null]
+  - name: stg_membership_status_history
+    description: Cleanly typed, half-open membership-state intervals used for date-as-of eligibility.
+    columns:
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('stg_members'), field: member_id}}]
+      - name: status
+        data_tests: [not_null, accepted_values: {arguments: {values: ['active', 'inactive']}}]
+  - name: stg_partner_categories
+    description: Typed synthetic category lookup.
+    columns:
+      - name: category_id
+        data_tests: [not_null, unique]
+  - name: stg_partners
+    description: Typed partner master, one static category and activation interval per partner.
+    columns:
+      - name: partner_id
+        data_tests: [not_null, unique]
+      - name: category_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('stg_partner_categories'), field: category_id}}]
+  - name: stg_offers
+    description: Typed synthetic offer master; one partner per validity interval.
+    columns:
+      - name: offer_id
+        data_tests: [not_null, unique]
+      - name: partner_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('stg_partners'), field: partner_id}}]
+  - name: stg_offer_eligibility
+    description: One offer-eligibility interval per member-offer pair, typed for interval joins.
+    columns:
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('stg_members'), field: member_id}}]
+      - name: offer_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('stg_offers'), field: offer_id}}]
+  - name: stg_redemptions
+    description: Typed source redemption events; UTC-aware timestamp retained for traceability.
+    columns:
+      - name: redemption_id
+        data_tests: [not_null, unique]
+      - name: redeemed_at
+        data_tests: [not_null]
+  - name: stg_member_events
+    description: Typed synthetic event source; activity date is derived only after UTC conversion.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: event_at
+        data_tests: [not_null]
+  - name: stg_simulation_period
+    description: One-row reproducibility control from the generator; drives the calendar date spine.
+    columns:
+      - name: period_id
+        data_tests: [not_null, unique]
+      - name: simulation_start_date
+        data_tests: [not_null]
+      - name: simulation_end_date_inclusive
+        data_tests: [not_null]
+  - name: int_redemption_validation
+    description: One row per source redemption, including validity flags and a first rejection reason; EXISTS checks avoid multiplying the event grain.
+    columns:
+      - name: redemption_id
+        data_tests: [not_null, unique]
+      - name: is_valid_redemption
+        description: True only for a complete event with a known offer, valid date, active membership and dated member-offer eligibility.
+  - name: int_qualifying_member_events
+    description: One row per unique allowlisted member event occurring inside an active membership interval.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+      - name: event_date
+        description: UTC calendar date derived from the timezone-aware source event timestamp.
+  - name: int_eligible_member_offer_period
+    description: One distinct member-offer opportunity per reporting month where eligible membership, offer validity and partner activity overlap for at least one date.
+    columns:
+      - name: month_start
+        data_tests: [not_null]
+      - name: member_id
+        data_tests: [not_null]
+      - name: offer_id
+        data_tests: [not_null]
+  - name: dim_members
+    description: Member dimension at one row per synthetic member; cohort month derives from registration date.
+    columns:
+      - name: member_id
+        data_tests: [not_null, unique]
+      - name: cohort_month
+        data_tests: [not_null]
+  - name: dim_partners
+    description: Partner dimension at one row per partner, with one category and a half-open active interval.
+    columns:
+      - name: partner_id
+        data_tests: [not_null, unique]
+      - name: category_id
+        data_tests: [not_null]
+  - name: dim_offers
+    description: Offer dimension at one row per offer; partner ownership is many-to-one.
+    columns:
+      - name: offer_id
+        data_tests: [not_null, unique]
+      - name: partner_id
+        data_tests: [not_null]
+  - name: dim_date
+    description: One calendar day from the declared inclusive simulation start through end; partial edge months are identified explicitly.
+    columns:
+      - name: date_day
+        data_tests: [not_null, unique]
+      - name: is_complete_month
+        description: False only when the source simulation horizon ends before that calendar month ends.
+  - name: fct_redemptions
+    description: Valid completed events at one row per source redemption ID; descriptive dimensions join many-to-one and cannot amplify event counts.
+    columns:
+      - name: redemption_id
+        data_tests: [not_null, unique]
+      - name: member_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('dim_members'), field: member_id}}]
+      - name: offer_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('dim_offers'), field: offer_id}}]
+      - name: partner_id
+        data_tests: [not_null, relationships: {arguments: {to: ref('dim_partners'), field: partner_id}}]
+  - name: mart_member_engagement
+    description: Member-month snapshot beginning in each member's registration month; rows persist through inactivity to preserve cohort denominators.
+    config:
+      meta:
+        group_details:
+          member_activity:
+            label: Member activity
+            description: Member eligibility and activity at one row per member and reporting month.
+    columns:
+      - name: member_id
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: string, groups: [member_activity]}
+            metrics:
+              registered_members:
+                label: Registered members
+                type: count_distinct
+                description: Distinct registered members represented in the selected reporting month.
+              eligible_members:
+                label: Eligible members
+                type: count_distinct
+                description: Distinct members eligible at reporting month end.
+                filters: [{is_eligible_as_of_month_end: true}]
+              active_members_30d:
+                label: Active members (30-day)
+                type: count_distinct
+                description: Distinct members eligible at month end with a qualifying event in the 30 inclusive UTC dates through month end.
+                filters: [{is_active_30d_as_of_month_end: true}]
+              monthly_active_members:
+                label: Monthly active members
+                type: count_distinct
+                description: Distinct eligible members with a qualifying event during the reporting calendar month.
+                filters:
+                  - is_eligible_as_of_month_end: true
+                  - is_monthly_active: true
+      - name: month_start
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: date, label: Reporting month, time_intervals: [MONTH]}
+      - name: cohort_month
+        description: Member registration cohort month.
+        config:
+          meta:
+            dimension: {type: date, label: Registration cohort month, time_intervals: [MONTH]}
+      - name: is_active_30d_as_of_month_end
+        description: Eligible at month end with at least one qualifying event in the 30 inclusive UTC dates ending at month end.
+        config:
+          meta:
+            dimension: {type: boolean, groups: [member_activity]}
+      - name: is_eligible_as_of_month_end
+        config:
+          meta:
+            dimension: {type: boolean, groups: [member_activity]}
+      - name: is_monthly_active
+        config:
+          meta:
+            dimension: {type: boolean, groups: [member_activity]}
+      - name: is_complete_month
+        config:
+          meta:
+            dimension: {type: boolean, label: Complete reporting month, groups: [member_activity]}
+  - name: mart_partner_performance
+    description: Partner-month availability and engagement; partner counts are distinct and denominator eligibility is based on a dated member-offer opportunity.
+    config:
+      meta:
+        group_details:
+          partner_performance:
+            label: Partner performance
+            description: Distinct partner counts and valid redemption activity by month and category.
+        metrics:
+          metric_partner_engagement_rate:
+            label: Partner engagement rate
+            type: number
+            description: Eligible partners with at least one valid redemption divided by eligible partners with an offer opportunity, evaluated within the selected month and category.
+            sql: "${engaged_eligible_partners} / nullif(${partners_with_eligible_offers}, 0)"
+            format: "0.00%"
+    columns:
+      - name: partner_id
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: string, groups: [partner_performance]}
+            metrics:
+              partners_with_eligible_offers:
+                label: Partners with eligible offers
+                type: count_distinct
+                description: Distinct partners with at least one eligible member-offer opportunity in the selected period.
+                filters: [{has_available_offer: true}]
+              engaged_eligible_partners:
+                label: Engaged eligible partners
+                type: count_distinct
+                description: Distinct eligible partners with at least one valid redemption in the selected period.
+                filters: [{is_engaged_eligible_partner: true}]
+              active_partners:
+                label: Active partners at month end
+                type: count_distinct
+                description: Distinct partners active at reporting month end.
+                filters: [{is_active_as_of_month_end: true}]
+      - name: month_start
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: date, label: Reporting month, time_intervals: [MONTH]}
+      - name: category_id
+        description: Partner category key; category labels are resolved through the governed partner dimension.
+        config:
+          meta:
+            dimension: {type: string, label: Partner category ID, groups: [partner_performance]}
+      - name: category_name
+        description: Governed partner-category label carried from the unique partner dimension for readable category-level reporting.
+        config:
+          meta:
+            dimension: {type: string, label: Partner category, groups: [partner_performance]}
+      - name: has_available_offer
+        description: True when at least one member-offer pair had an eligible opportunity with this partner during the reporting month.
+        config:
+          meta:
+            dimension: {type: boolean, groups: [partner_performance]}
+      - name: is_engaged_eligible_partner
+        config:
+          meta:
+            dimension: {type: boolean, groups: [partner_performance]}
+      - name: is_active_as_of_month_end
+        config:
+          meta:
+            dimension: {type: boolean, groups: [partner_performance]}
+      - name: valid_redemption_count
+        description: Valid completed redemption events for this partner during the reporting month; repeated events are counted separately.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              valid_redemption_events:
+                label: Valid redemption events
+                type: sum
+                description: Sum of valid completed redemption events; repeated redemptions count as separate events.
+      - name: eligible_member_offer_pairs
+        description: Distinct eligible member-offer opportunities for this partner and reporting month.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              eligible_member_offer_opportunities:
+                label: Eligible member-offer opportunities
+                type: sum
+                description: Distinct eligible member-offer pairs across partner-month rows; this is not a count of people.
+  - name: mart_cohort_retention
+    description: Registration cohort by calendar-month age; retained members are monthly active in complete months only.
+    config:
+      meta:
+        group_details:
+          cohort_analysis:
+            label: Cohort analysis
+            description: Monthly cohort sizes and complete-month retention.
+    columns:
+      - name: cohort_month
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: date, label: Registration cohort month, time_intervals: [MONTH]}
+      - name: age_month
+        data_tests: [not_null]
+        config:
+          meta:
+            dimension: {type: number, label: Cohort age (months)}
+      - name: is_complete_month
+        config:
+          meta:
+            dimension: {type: boolean, label: Complete reporting month}
+      - name: cohort_retention_rate
+        description: NULL for an incomplete calendar month or a zero-size cohort; otherwise active cohort members divided by cohort size.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_cohort_retention_rate:
+                label: Cohort retention rate
+                type: max
+                description: Monthly-active cohort members divided by cohort size for complete calendar months only. One row per cohort and month age; do not sum rates.
+                format: "0.00%"
+      - name: retained_members
+        description: Distinct cohort members monthly active in a complete reporting month.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_retained_members:
+                label: Retained members
+                type: max
+                description: Number of monthly active members in this cohort at this age; one row per cohort and month age.
+      - name: cohort_size
+        description: Distinct members in the registration cohort; repeated on age rows for denominator traceability.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_cohort_size:
+                label: Cohort size
+                type: max
+                description: Cohort member count. One row per cohort and month age; do not sum across age rows.
+  - name: mart_executive_kpis
+    description: One row per reporting month. Snapshot counts and period flows are separate columns; rates are non-additive and return NULL for zero denominators.
+    config:
+      meta:
+        group_details:
+          governed_kpis:
+            label: Governed KPIs
+            description: Canonical monthly KPI contract; one row per reporting month.
+    columns:
+      - name: month_start
+        data_tests: [not_null, unique]
+        config:
+          meta:
+            dimension:
+              type: date
+              label: Reporting month
+              time_intervals: [MONTH]
+      - name: is_complete_month
+        description: True only when every calendar date of this month is present; use it to distinguish the partial ending month from comparable complete months.
+        config:
+          meta:
+            dimension:
+              type: boolean
+              label: Complete reporting month
+              groups: [governed_kpis]
+      - name: total_registered_members
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_total_registered_members:
+                label: Total registered members
+                type: max
+                description: Point-in-time registered-member snapshot at month end; one row per month, so do not sum across months.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: eligible_members
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_eligible_members:
+                label: Eligible members
+                type: max
+                description: Point-in-time eligible-member snapshot at month end; one row per month, so do not sum across months.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: active_members_30d
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_active_members_30d:
+                label: Active members (30-day)
+                type: max
+                description: Eligible members with qualifying activity during the 30 inclusive UTC dates ending at month end; one row per month, so do not sum across months.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: monthly_active_members
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_monthly_active_members:
+                label: Monthly active members
+                type: max
+                description: Distinct eligible members with a qualifying event in the reporting calendar month; one row per month, so do not sum across months.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: offer_redemption_count
+        description: Count of valid unique completed redemption events in the reporting month.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_offer_redemption_count:
+                label: Offer redemption count
+                type: max
+                description: Valid completed redemption events attributed to the reporting month; repeated redemptions count as separate events.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: offer_redemption_rate
+        description: Distinct redeemed eligible member-offer pairs divided by distinct eligible pairs; NULL when no eligible pairs exist.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_offer_redemption_rate:
+                label: Offer redemption rate
+                type: max
+                description: Distinct eligible member-offer pairs with at least one valid completed redemption divided by all eligible pairs in the reporting month. One row per month; do not sum or average across months.
+                groups: [governed_kpis]
+                format: "0.00%"
+      - name: active_partners_as_of_month_end
+        description: Partners active at the reporting month end.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              active_partners:
+                label: Active partners
+                type: max
+                description: Point-in-time count of active partners at month end; one row per month, so do not sum across months.
+                groups: [governed_kpis]
+                format: "#,##0"
+      - name: partner_engagement_rate
+        description: Distinct eligible partners with redemption divided by partners with an eligible offer opportunity; NULL when denominator is zero.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_partner_engagement_rate:
+                label: Partner engagement rate
+                type: max
+                description: Eligible partners with at least one valid redemption divided by partners with an eligible offer opportunity in the reporting month; one row per month, so do not sum or average across months.
+                groups: [governed_kpis]
+                format: "0.00%"
+      - name: repeat_redemption_rate
+        description: Members with at least two valid events divided by members with at least one event in-month; NULL with no redeemers.
+        config:
+          meta:
+            dimension: {type: number, hidden: true}
+            metrics:
+              metric_repeat_redemption_rate:
+                label: Repeat redemption rate
+                type: max
+                description: Members with at least two valid redemption events divided by members with one or more valid events during the month; one row per month, so do not sum or average across months.
+                groups: [governed_kpis]
+                format: "0.00%"
+
+unit_tests:
+  - name: test_dim_date_marks_partial_edge_months
+    description: The inclusive simulation range can begin/end mid-month; neither edge month is complete.
+    model: dim_date
+    given:
+      - input: ref('stg_simulation_period')
+        rows:
+          - period_id: SIM_TEST
+            simulation_start_date: "2025-01-31"
+            simulation_end_date_inclusive: "2025-02-01"
+            seed: 1
+            schema_version: "1.0.0"
+    expect:
+      rows:
+        - date_day: "2025-01-31"
+          month_start: "2025-01-01"
+          calendar_year: 2025
+          calendar_month: 1
+          calendar_month_name: January
+          is_month_end: true
+          is_complete_month: false
+        - date_day: "2025-02-01"
+          month_start: "2025-02-01"
+          calendar_year: 2025
+          calendar_month: 2
+          calendar_month_name: February
+          is_month_end: false
+          is_complete_month: false
