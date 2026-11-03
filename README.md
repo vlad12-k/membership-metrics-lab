@@ -134,6 +134,11 @@ The page reports partner/category/month results. The partner mart has no `offer_
 
 Desktop interactions and accessibility are explicitly outside the verified evidence in this release candidate.
 
-**Licensing:** no license has been selected or granted yet. Source-code and synthetic-data terms must be decided separately before public publication.
+## Licensing
+
+- **Original source code — MIT:** applies only to project-authored implementation files: `src/`, `tests/`, `scripts/export_powerbi_snapshots.py`, original SQL/dbt models, macros and tests, plus `pyproject.toml`, `compose.yaml` and `.github/workflows/ci.yml`. Third-party dependencies retain their own licenses.
+- **Synthetic data — CC0 1.0:** applies only to the four mart CSV snapshots, `kpi-reconciliation.csv` and `manifest.json` in `data/powerbi/snapshots/2026-10-28/`. The manifest identifies them as synthetic and states that no real member or partner records are present.
+- Neither grant covers third-party trademarks, Microsoft Power BI UI/brand components, external assets, or the PDF-derived dashboard previews. Preview asset/theme rights remain unresolved; these images are not cleared for public redistribution by the source-code or data licenses.
+- Full terms and precise file scope: [`LICENSE`](LICENSE) and [`LICENSE-DATA`](LICENSE-DATA). The CC0 dedication does not waive rights the project author does not own.
 
 
